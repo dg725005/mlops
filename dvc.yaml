@@ -1,0 +1,11 @@
+stages:
+
+  train:
+    cmd: python mlops_iris/training_DVC.py
+    deps:
+      - dataset/Iris.csv
+      - mlops_iris/training_DVC.py
+      - params.json           # This ensures if HPO changes, we retrain!
+    outs:
+      - mlops_iris/X_cleaned.csv  # Output 1
+      - mlops_iris/y_cleaned.csv  # Output 2  
