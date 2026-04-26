@@ -1,0 +1,14 @@
+stages:
+  clean:
+    cmd: python src/data_cleaning.py
+    deps:
+      - data/raw_data.csv
+      - src/data_cleaning.py
+    outs:
+      - data/cleaned_data.csv
+  train:
+    cmd: python src/model_training.py
+    deps:
+      - data/cleaned_data.csv
+      - src/model_training.py
+      - params.json           # This ensures if HPO changes, we retrain!
